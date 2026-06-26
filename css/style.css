@@ -1,0 +1,22 @@
+body {
+    background-color: antiquewhite;
+    text-align: center;
+
+}
+
+.board {
+    display: flex;
+    border: 2px solid black;
+    width: 550px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    justify-self: center;
+}
+
+.crcl {
+    background-color: white;
+    border-radius: 100%;
+    border: 3px solid black;
+    width: 70px;
+    aspect-ratio: 1/1;
+}
