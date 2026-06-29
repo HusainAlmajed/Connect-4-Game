@@ -21,6 +21,8 @@ let tie = false;
 let turn = 'Blue';
 let circleColumn;
 let circleRow;
+let lastIndex;
+let lastCircleId;
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('.board');
 const circles = document.querySelectorAll('.crcl');
@@ -31,16 +33,20 @@ const msg = document.querySelector('h2');
 /*-------------------------------- Functions --------------------------------*/
 const changeColor = (circle) => {
     if (circle.style.backgroundColor === '') {
-    
     circleColumn = circle.id;
     console.log('Id: ' , circleColumn);
     console.log(circle.id % 7);
-    circleColumn = Math.ceil((circle.id % 7)) + 1;
+    circleColumn = circle.id % 7;
     console.log('Column: ' , circleColumn)
     circleRow = Math.floor((circle.id / 7)) + 1;
     console.log('Row: ' , circleRow)
-    circle.style.backgroundColor = turn;
-    gameBoard [circleRow - 1] [circleColumn - 1] = turn;
+    lastIndex = lastEmpty(circleColumn);
+    console.log('Last index is: ' , lastIndex);
+    lastCircleId = lastIndex * 7 + circleColumn;
+    console.log('Last Id: ' , lastCircleId);
+    document.getElementById(lastCircleId).style.backgroundColor = turn;
+    // circle.style.backgroundColor = turn;
+    gameBoard [lastIndex] [circleColumn] = turn;
     changeTurn();
     }
 
@@ -75,8 +81,23 @@ const changeTurn = () => {
     else turn = 'Blue';
 }
 
-const checkWinner = () => {
+const lastEmpty = (circleColumn) => {
+    
+    for (let i = 5; i >= 0;i--) {
+        if (gameBoard[i][circleColumn] === '') {
 
+            return i;
+
+        }
+    }
+
+    return null;
+
+};
+
+const checkWinner = () => {
+    
+    
 };
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -87,6 +108,7 @@ changeMessage(circle);// we change the message after changing turns
 changeColor(circle);//We need to pass an input for the function
 // console.log('Id: ' , circle.id);
 // console.log(circle.className);
+// checkWinner();
 })});
 
 butn.addEventListener ('click' , function() {
