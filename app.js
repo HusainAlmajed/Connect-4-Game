@@ -19,7 +19,8 @@ const gameBoard = [
 let winner = false;
 let tie = false;
 let turn = 'Blue';
-let circleIndex;
+let circleColumn;
+let circleRow;
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('.board');
 const circles = document.querySelectorAll('.crcl');
@@ -31,12 +32,18 @@ const msg = document.querySelector('h2');
 const changeColor = (circle) => {
     if (circle.style.backgroundColor === '') {
     
-    circleIndex = circle.id;
+    circleColumn = circle.id;
+    console.log('Id: ' , circleColumn);
+    console.log(circle.id % 7);
+    circleColumn = Math.ceil((circle.id % 7)) + 1;
+    console.log('Column: ' , circleColumn)
+    circleRow = Math.floor((circle.id / 7)) + 1;
+    console.log('Row: ' , circleRow)
     circle.style.backgroundColor = turn;
-    // gameBoard = turn;
+    gameBoard [circleRow - 1] [circleColumn - 1] = turn;
     changeTurn();
     }
-    // gameBoard[circleIndex , 2] = turn;
+
     console.log(gameBoard)
 }
 
@@ -72,7 +79,7 @@ circle.addEventListener ('click' , function() {
 
 changeColor(circle);//We need to pass an input for the function
 changeMessage(circle);// we change the message after changing turns
-console.log('Id: ' , circle.id);
+// console.log('Id: ' , circle.id);
 console.log(circle.className);
 })});
 
