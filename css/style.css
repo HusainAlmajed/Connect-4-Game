@@ -14,6 +14,10 @@ body {
     justify-self: center;
 }
 
+.crcl:hover {
+    cursor: pointer;
+}
+
 .crcl {
     flex: auto;
     justify-content: space-between;

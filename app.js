@@ -49,19 +49,25 @@ const changeColor = (circle) => {
 
 const changeMessage = (circle) => {
     
-    if (circle.style.backgroundColor !== '') {
-        if (turn === 'Blue') {
+    if (circle.style.backgroundColor === '') {
+        if (turn === 'Yellow') {
             msg.textContent = `It's Blue's Turn`;
-        } else if (turn === 'Yellow') {
+        } else if (turn === 'Blue') {
             msg.textContent = `It's Yellow's Turn`;
         }
+    }else{
+        msg.textContent = 'Invalid!! Chose an empty circle';
     }
+        
+    //     if (circle.style.backgroundColor === 'blue'){
+    //     msg.textContent = "Heyyy!!";
+    // }
     console.log('cuurent turn: ' , turn)
 };
 
-const getId = (circle) => {
-    console.log('Hello, Im Circle');
-};
+// const getId = (circle) => {
+//     console.log('Hello, Im Circle');
+// };
 
 const changeTurn = () => {
 
@@ -77,10 +83,10 @@ const checkWinner = () => {
 circles.forEach((circle) => {
 circle.addEventListener ('click' , function() {
 
-changeColor(circle);//We need to pass an input for the function
 changeMessage(circle);// we change the message after changing turns
+changeColor(circle);//We need to pass an input for the function
 // console.log('Id: ' , circle.id);
-console.log(circle.className);
+// console.log(circle.className);
 })});
 
 butn.addEventListener ('click' , function() {
