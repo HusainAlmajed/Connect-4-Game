@@ -5,6 +5,7 @@ body {
 }
 
 .board {
+    background-color: aqua;
     display: flex;
     border: 2px solid black;
     width: 550px;
@@ -14,7 +15,9 @@ body {
 }
 
 .crcl {
-    background-color: white;
+    flex: auto;
+    justify-content: space-between;
+    background-color: antiquewhite;
     border-radius: 100%;
     border: 3px solid black;
     width: 70px;
