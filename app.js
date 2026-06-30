@@ -79,15 +79,6 @@ const winningArrays = [
     [12, 19, 26, 33],
     [13, 20, 27, 34],
   ]
-
-// console.log(gameBoard)
-// gameBoard   [0] [0] = 'Red';
-// gameBoard   [0] [1] = 'Green'
-// gameBoard   [1] [3] = 'Green';
-// gameBoard   [5] [5] = 'Red';
-// gameBoard   [2] [5] = 'Green';
-// gameBoard   [2] [6] = 'Red';
-// console.log(gameBoard);
 /*-------------------------------- Variables --------------------------------*/
 let winner = false;
 let tie;
@@ -96,6 +87,7 @@ let circleColumn;
 let circleRow;
 let lastIndex;
 let lastCircleId;
+let winnerColor;
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('.board');
 const circles = document.querySelectorAll('.crcl');
@@ -105,6 +97,8 @@ const msg = document.querySelector('h2');
 
 /*-------------------------------- Functions --------------------------------*/
 const changeColor = (circle) => {
+        
+    if (!winner && !tie) {
     if (circle.style.backgroundColor === '') {
     circleColumn = circle.id;
     console.log('Id: ' , circleColumn);
@@ -118,17 +112,19 @@ const changeColor = (circle) => {
     lastCircleId = lastIndex * 7 + circleColumn;
     console.log('Last Id: ' , lastCircleId);
     document.getElementById(lastCircleId).style.backgroundColor = turn;
-    // circle.style.backgroundColor = turn;
     gameBoard [lastIndex] [circleColumn] = turn;
-    changeTurn();
-    }
+    }};
 
     console.log(gameBoard)
 }
 
 const changeMessage = (circle) => {
     
-    
+    if (winner === true) {
+        msg.textContent = (`The winner is ${turn}`)
+        return;
+    };  
+
     if (circle.style.backgroundColor === '') {
         if (turn === 'Yellow') {
             msg.textContent = `It's Blue's Turn`;
@@ -138,18 +134,15 @@ const changeMessage = (circle) => {
     }else{
         msg.textContent = 'Invalid!! Chose an empty circle';
     }
-        
-    //     if (circle.style.backgroundColor === 'blue'){
-    //     msg.textContent = "Heyyy!!";
-    // }
+
     console.log('cuurent turn: ' , turn)
 };
 
-// const getId = (circle) => {
-//     console.log('Hello, Im Circle');
-// };
-
 const changeTurn = () => {
+    
+    if (winner || tie) {
+        return;
+    };
 
     if (turn === 'Blue') turn = 'Yellow';
     else turn = 'Blue';
@@ -216,10 +209,6 @@ const checkTie = () => {
 const checkWinner = () => {
     
     for (let y = 0; y < winningArrays.length; y++) {
-        // const square1 = circles[winningArrays[y][0]];
-        // const square2 = circles[winningArrays[y][1]];
-        // const square3 = circles[winningArrays[y][2]];
-        // const square4 = circles[winningArrays[y][3]];
 
         if (
             circles[winningArrays[y][0]].style.backgroundColor !== '' 
@@ -234,38 +223,19 @@ const checkWinner = () => {
     console.log('Winner is: ', winner);
 };
 
-// const checkWinner = () => {
-    
-//     winningArrays.forEach((item) => {
-
-//         if (gameBoard[item[0]] !== '' 
-//             && gameBoard[item[0]] === gameBoard[item[1]] 
-//             && gameBoard[item[0]] === gameBoard[item[2]] 
-//             && gameBoard[item[0]] === gameBoard[item[3]]
-//             && gameBoard[item[0]] === gameBoard[item[4]]
-//         ) {
-//             winner = true;
-//         }
-//     });
-//      console.log('Winner is : ' , winner);
-
-// };
-
 /*----------------------------- Event Listeners -----------------------------*/
 circles.forEach((circle) => {
 circle.addEventListener ('click' , function() {
 
-changeMessage(circle);// we change the message after changing turns
 changeColor(circle);//We need to pass an input for the function
-// console.log('Id: ' , circle.id);
-// console.log(circle.className);
 checkTie();
 checkWinner();
+changeMessage(circle);// we change the message after changing turns
+changeTurn();
+
 })});
 
 butn.addEventListener ('click' , function() {
-    // document.body.remove();
     resetGame();
-
 });
 
