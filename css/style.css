@@ -18,6 +18,13 @@ body {
     cursor: pointer;
 }
 
+button {
+    background-color: rebeccapurple;
+    width: 75px;
+    height: 45px;
+    margin: 25px;
+}
+
 .crcl {
     flex: auto;
     justify-content: space-between;

@@ -1,5 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-const gameBoard = [
+let gameBoard = [
     ['' , '' , '' , '' , '' , '' , ''] , 
     ['' , '' , '' , '' , '' , '' , ''] , 
     ['' , '' , '' , '' , '' , '' , ''] , 
@@ -100,6 +100,27 @@ const checkWinner = () => {
     
 };
 
+const resetGame = () => {
+
+    gameBoard = [
+    ['' , '' , '' , '' , '' , '' , ''] , 
+    ['' , '' , '' , '' , '' , '' , ''] , 
+    ['' , '' , '' , '' , '' , '' , ''] , 
+    ['' , '' , '' , '' , '' , '' , ''] , 
+    ['' , '' , '' , '' , '' , '' , ''] , 
+    ['' , '' , '' , '' , '' , '' , ''] , 
+];
+    turn = 'Blue';
+    winner = false;
+    tie = false;
+    msg.textContent = ('Chose a circle to start');
+
+    circles.forEach((item) => {
+        item.style.backgroundColor = '';
+    });
+
+};
+
 /*----------------------------- Event Listeners -----------------------------*/
 circles.forEach((circle) => {
 circle.addEventListener ('click' , function() {
@@ -112,6 +133,8 @@ changeColor(circle);//We need to pass an input for the function
 })});
 
 butn.addEventListener ('click' , function() {
-    document.body.remove();
+    // document.body.remove();
+    resetGame();
+
 });
 
