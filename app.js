@@ -90,7 +90,7 @@ const winningArrays = [
 // console.log(gameBoard);
 /*-------------------------------- Variables --------------------------------*/
 let winner = false;
-let tie = false;
+let tie;
 let turn = 'Blue';
 let circleColumn;
 let circleRow;
@@ -178,7 +178,7 @@ const resetGame = () => {
     ['' , '' , '' , '' , '' , '' , ''] , 
     ['' , '' , '' , '' , '' , '' , ''] , 
     ['' , '' , '' , '' , '' , '' , ''] , 
-    ['blue' , '' , '' , '' , '' , '' , ''] , 
+    ['' , '' , '' , '' , '' , '' , ''] , 
 ];
     turn = 'Blue';
     winner = false;
@@ -196,8 +196,8 @@ console.log(gameBoard[0].length);
 
 const checkTie = () => {
     tie = true;
-    for (let i = 0; i < 6;i++) {
-        for (let y = 0; y < 7;y++) {
+    for (let i = 0; i < gameBoard.length;i++) {
+        for (let y = 0; y < gameBoard[0].length;y++) {
 
             if (gameBoard[i][y] === '') {
                 tie = false;
@@ -205,13 +205,51 @@ const checkTie = () => {
 
         }
     }
+
+    if (tie) {
+        msg.textContent = 'Its a Tie !!!';
+    }
+    console.log(tie);
+
 }
 
 const checkWinner = () => {
     
+    for (let y = 0; y < winningArrays.length; y++) {
+        // const square1 = circles[winningArrays[y][0]];
+        // const square2 = circles[winningArrays[y][1]];
+        // const square3 = circles[winningArrays[y][2]];
+        // const square4 = circles[winningArrays[y][3]];
 
-    
+        if (
+            circles[winningArrays[y][0]].style.backgroundColor !== '' 
+            && circles[winningArrays[y][0]].style.backgroundColor === circles[winningArrays[y][1]].style.backgroundColor 
+            && circles[winningArrays[y][0]].style.backgroundColor === circles[winningArrays[y][2]].style.backgroundColor 
+            && circles[winningArrays[y][0]].style.backgroundColor === circles[winningArrays[y][3]].style.backgroundColor
+        ) {
+            winner = true;
+        }
+    }
+
+    console.log('Winner is: ', winner);
 };
+
+// const checkWinner = () => {
+    
+//     winningArrays.forEach((item) => {
+
+//         if (gameBoard[item[0]] !== '' 
+//             && gameBoard[item[0]] === gameBoard[item[1]] 
+//             && gameBoard[item[0]] === gameBoard[item[2]] 
+//             && gameBoard[item[0]] === gameBoard[item[3]]
+//             && gameBoard[item[0]] === gameBoard[item[4]]
+//         ) {
+//             winner = true;
+//         }
+//     });
+//      console.log('Winner is : ' , winner);
+
+// };
 
 /*----------------------------- Event Listeners -----------------------------*/
 circles.forEach((circle) => {
@@ -222,7 +260,7 @@ changeColor(circle);//We need to pass an input for the function
 // console.log('Id: ' , circle.id);
 // console.log(circle.className);
 checkTie();
-// checkWinner();
+checkWinner();
 })});
 
 butn.addEventListener ('click' , function() {
