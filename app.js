@@ -1,4 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
+// empty 2D array that will be used to fill in user input to compare it with winningarray
 let gameBoard = [
     ['' , '' , '' , '' , '' , '' , ''] , 
     ['' , '' , '' , '' , '' , '' , ''] , 
@@ -7,7 +8,7 @@ let gameBoard = [
     ['' , '' , '' , '' , '' , '' , ''] , 
     ['' , '' , '' , '' , '' , '' , ''] , 
 ];
-
+// all winning combos
 const winningArrays = [
     [0, 1, 2, 3],
     [41, 40, 39, 38],
@@ -94,59 +95,54 @@ const circles = document.querySelectorAll('.crcl');
 const butn = document.querySelector('button');
 const head = document.querySelector('h1');
 const msg = document.querySelector('h2');
-
 /*-------------------------------- Functions --------------------------------*/
 const changeColor = (circle) => {
-        
+    //if theres no winner and its not a tie, this process will proceed    
     if (!winner && !tie) {
-    if (circle.style.backgroundColor === '') {
-    circleColumn = circle.id;
-    console.log('Id: ' , circleColumn);
-    console.log(circle.id % 7);
     circleColumn = circle.id % 7;
-    console.log('Column: ' , circleColumn)
     circleRow = Math.floor((circle.id / 7)) + 1;
-    console.log('Row: ' , circleRow)
     lastIndex = lastEmpty(circleColumn);
-    console.log('Last index is: ' , lastIndex);
+    //returned false because nothing has changed
+    if (lastIndex === null) return false;
+
     lastCircleId = lastIndex * 7 + circleColumn;
-    console.log('Last Id: ' , lastCircleId);
     document.getElementById(lastCircleId).style.backgroundColor = turn;
     gameBoard [lastIndex] [circleColumn] = turn;
-    }};
+    // returning true because the circle has changed color
+    return true;
+    };
 
-    console.log(gameBoard)
 }
 
-const changeMessage = (circle) => {
-    
+const changeMessage = (changed) => {
+    // check if theres a winner so the winner message will be displayed
     if (winner === true) {
         msg.textContent = (`The winner is ${turn}`)
         return;
     };  
-
-    if (circle.style.backgroundColor === '') {
+    //if its a tie the function will exit
+    if (tie) return;
+    // so that the turn will only change if the circle has actually changed its color
+    if (changed) {
         if (turn === 'Yellow') {
             msg.textContent = `It's Blue's Turn`;
         } else if (turn === 'Blue') {
             msg.textContent = `It's Yellow's Turn`;
         }
-    }else{
-        msg.textContent = 'Invalid!! Chose an empty circle';
     }
 
-    console.log('cuurent turn: ' , turn)
 };
 
-const changeTurn = () => {
-    
-    if (winner || tie) {
+const changeTurn = (changed) => {
+    // if theres a winner or its a tie or no changes has occured (the circle color didnt change), the function will exit
+    if (winner || tie || !changed) {
         return;
     };
 
     if (turn === 'Blue') turn = 'Yellow';
     else turn = 'Blue';
-}
+
+};
 
 const lastEmpty = (circleColumn) => {
     
@@ -161,7 +157,6 @@ const lastEmpty = (circleColumn) => {
     return null;
 
 };
-
 
 const resetGame = () => {
 
@@ -184,9 +179,6 @@ const resetGame = () => {
 
 };
 
-console.log(gameBoard.length);
-console.log(gameBoard[0].length);
-
 const checkTie = () => {
     tie = true;
     for (let i = 0; i < gameBoard.length;i++) {
@@ -200,10 +192,8 @@ const checkTie = () => {
     }
 
     if (tie) {
-        msg.textContent = 'Its a Tie !!!';
+        msg.textContent = 'There is no winner!!!';
     }
-    console.log(tie);
-
 }
 
 const checkWinner = () => {
@@ -219,23 +209,22 @@ const checkWinner = () => {
             winner = true;
         }
     }
-
-    console.log('Winner is: ', winner);
 };
 
 /*----------------------------- Event Listeners -----------------------------*/
 circles.forEach((circle) => {
 circle.addEventListener ('click' , function() {
+// a new constant is created so we can know if the circle color has changed or not
+const changed = changeColor(circle);//We need to pass an input for the function
 
-changeColor(circle);//We need to pass an input for the function
 checkTie();
 checkWinner();
-changeMessage(circle);// we change the message after changing turns
-changeTurn();
+changeMessage(changed);// we change the message after changing turns
+changeTurn(changed);
 
 })});
 
 butn.addEventListener ('click' , function() {
-    resetGame();
+    resetGame();// reset all variables to their default values
 });
 
