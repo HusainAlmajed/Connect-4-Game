@@ -92,9 +92,10 @@ let winnerColor;
 /*------------------------ Cached Element References ------------------------*/
 const board = document.querySelector('.board');
 const circles = document.querySelectorAll('.crcl');
-const butn = document.querySelector('button');
+const butn = document.querySelector('#restart');
 const head = document.querySelector('h1');
 const msg = document.querySelector('h2');
+const dark = document.querySelector('#dark')
 /*-------------------------------- Functions --------------------------------*/
 const changeColor = (circle) => {
     //if theres no winner and its not a tie, this process will proceed    
