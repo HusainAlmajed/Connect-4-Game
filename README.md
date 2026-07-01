@@ -1,7 +1,7 @@
 # Connect-4-Game
 _A brief description of your game_
 
-![alt text](/assets/image.png)
+![alt text](assets/GameBoard.png)
 
 ## Getting Started
 
