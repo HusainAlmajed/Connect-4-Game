@@ -232,6 +232,5 @@ butn.addEventListener ('click' , function() {
 dark.addEventListener ('click' , function() {
 
     document.body.classList.toggle('dark');
-
 });
 
