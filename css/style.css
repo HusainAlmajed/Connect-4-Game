@@ -17,6 +17,37 @@
     position: absolute;
 }
 
+#info {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    position: absolute;
+    left: 75px;  
+    top: 10px;
+    overflow: visible;
+    font-size: 24px;
+    margin: 0;
+}
+
+#infos {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: left;
+    width: 200px;
+    z-index: 999;
+    left: 0;      
+    top: 50px;
+    font-size: 14px;
+}
+
+#info:hover #infos {
+    display: block;
+}
+
 body {
     background-color: rgb(244, 189, 118);
     text-align: center;
@@ -65,6 +96,8 @@ button:hover {
     position: absolute;
     width: 55px;
     height: 55px;
+    top: 10px;
+    margin: 0;
     border-radius: 50%;
 }
 
@@ -95,3 +128,14 @@ body.dark {
     background-color: #b53cab;
 }
 
+.Btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dark #infos {
+    background-color: #39072c;
+    color: #E6E6E6;
+    border-color: #5f1866;
+}
