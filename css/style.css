@@ -1,9 +1,24 @@
 * {
+    transition: all 0.5s ease-in-out;
     box-sizing: border-box;
 }
 
+.inline {
+    display: flex;
+    align-self: center;
+    align-items: center;
+}
+
+.inline h1 {
+    flex: 1;
+}
+
+.inline button {
+    position: absolute;
+}
+
 body {
-    background-color: antiquewhite;
+    background-color: rgb(244, 189, 118);
     text-align: center;
 
 }
@@ -27,24 +42,47 @@ button {
     width: 135px;
     height: 45px;
     margin: 25px;
-    border-radius: 50%;
+    border-radius: 44%;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(195, 253, 237);
 }
 
 .crcl {
     flex: 0 0 calc(100% / 7);
     justify-content: space-between;
-    background-color: antiquewhite;
+    background-color: rgb(244, 189, 118);
     border-radius: 100%;
     border: 3px solid rgb(22, 107, 65);
     aspect-ratio: 1/1;
 }
 
-#dark-mode {
-    position: absolute;
-    top: 10px;
+#info {
+    font-size: 30px;
     right: 10px;
-    width: 45px;
-    height: 45px;
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    transform-origin: top right;
+    overflow: hidden;
+}
+
+#info:hover {
+    border-radius: 0;
+    width: 400px;
+    height: 400px;
+}
+
+
+
+#dark {
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
 }
 
