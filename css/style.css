@@ -5,9 +5,9 @@ body {
 }
 
 .board {
-    background-color: aqua;
+    background-color: rgb(41, 181, 111);
     display: flex;
-    border: 2px solid black;
+    border: 4px solid rgb(32, 93, 63);
     width: 550px;
     margin-top: 50px;
     flex-wrap: wrap;
@@ -19,10 +19,11 @@ body {
 }
 
 button {
-    background-color: rebeccapurple;
-    width: 75px;
+    background-color: rgb(166, 217, 203);
+    width: 135px;
     height: 45px;
     margin: 25px;
+    border-radius: 50%;
 }
 
 .crcl {
@@ -30,7 +31,7 @@ button {
     justify-content: space-between;
     background-color: antiquewhite;
     border-radius: 100%;
-    border: 3px solid black;
+    border: 3px solid rgb(22, 107, 65);
     width: 70px;
     aspect-ratio: 1/1;
 }
