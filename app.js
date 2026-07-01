@@ -229,3 +229,9 @@ butn.addEventListener ('click' , function() {
     resetGame();// reset all variables to their default values
 });
 
+dark.addEventListener ('click' , function() {
+
+    document.body.classList.toggle('dark');
+
+});
+

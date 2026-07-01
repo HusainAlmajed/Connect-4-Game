@@ -39,5 +39,39 @@ button {
     aspect-ratio: 1/1;
 }
 
+#dark-mode {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
 
+body.dark {
+    background-color: #39072c;
+    color: #E6E6E6;
+}
+
+.dark .board {
+    background-color: #531253;
+    border-color: #390e3d;
+}
+
+.dark .crcl {
+    background-color: #33032F;
+    border: 3px solid #5f1866;
+}
+
+.dark button {
+    background-color: #872c7f;
+    border: none;
+    color: wheat;
+    font-weight: 600;
+}
+
+.dark button:hover {
+    cursor: pointer;
+    background-color: #b53cab;
+}
 
